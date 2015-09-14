@@ -87,6 +87,26 @@ module.exports = {
 
     });
 
+    app.get('/step-2', function (req, res) {
+      if (req.query.knowsni == 'No') {
+        res.render('step-2', {
+          'name' : req.query.prop,
+          'alert' : ' no ni ' });
+      } else {
+        res.render('step-2', {
+          'name' : req.query.prop });
+      }
+  });
+
+  app.get('/step-1', function (req, res) {
+      res.render('step-1', { 'name' : 'Foo' });
+    });
+
+    app.get('/examples/template-data', function (req, res) {
+      res.render('examples/template-data', { 'name' : 'Foo' });
+    });
+
+
     // add your routes here
 
   }
