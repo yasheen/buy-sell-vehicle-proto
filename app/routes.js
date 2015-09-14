@@ -27,11 +27,11 @@ module.exports = {
       res.render('index');
     });
 
-    app.get('/code-routes', function (req, res) {
-      if (req.query.radiogroup == 'no') {
-			res.render('code-no-find-vehicle/');
+    app.get('/find-vehicle-by-reg', function (req, res) {
+      if (req.query.hasCode == 'no') {
+			res.render('find-vehicle-by-reg/');
 		} else {
-			res.render('code-yes-find-vehicle/');
+			res.render('find-vehicle-by-code/');
 		}
     });
 
@@ -43,19 +43,49 @@ module.exports = {
 		}
     });
 
+    app.get('/verify', function (req, res) {
+      if (req.query["motorTrader"] == 'yes') {
+      res.redirect('trader-details/' + res.locals.formQuery);
+    } else {
+      res.render('verify/');
+    }
+    });
+
+    app.get('/finish-proof-seller', function (req, res) {
+      if (req.query["hasCode"] == 'no') {
+      res.redirect('share-code/' + res.locals.formQuery);
+    } else {
+        if (req.query["buyer-or-seller"] == 'buyer') {
+        res.redirect('finish-proof-buyer/' + res.locals.formQuery);
+      } else {
+        res.render('finish-proof-seller/');
+      }
+    }
+    });
+
     app.get('/share-code', function (req, res) {
     	if (req.query["buyer-or-seller"] == 'seller') {
     		var secondParty="buyer";
-    		var secondPartyCapital="Buyer";
+    		var secondPartyCapital="Buyer's";
     	}	else {
     		var secondParty="seller";
-    		var secondPartyCapital="Seller";
+    		var secondPartyCapital="Seller's";
     	}
       res.render('share-code', { 'second-party' : secondParty, 'second-party-capital' : secondPartyCapital });
 
     });
 
+    app.get('/confirm-transfer', function (req, res) {
+      if (req.query["buyer-or-seller"] == 'seller') {
+        var firstPartyResponsible="will no longer be";
+        var firstPartyResponsibleVerb="give away";
+      } else {
+        var firstPartyResponsible="will be";
+        var firstPartyResponsibleVerb="take on";
+      }
+      res.render('confirm-transfer', { 'fist-party-responsible' : firstPartyResponsible, 'fist-party-responsible-verb' : firstPartyResponsibleVerb });
 
+    });
 
     // add your routes here
 

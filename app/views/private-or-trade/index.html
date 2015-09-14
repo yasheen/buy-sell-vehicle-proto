@@ -8,26 +8,43 @@
 	<!-- feel free to change this page to suit your needs -->
 
   <!-- question only needed for buyers, as we will already have the vehicle record, therefore know if it is in trade or not -->
+
+  <p>A motor trader can be any of the following:</p>
+
+  <ol class="list-number">
+    <li>Motor trader</li>
+    <li>Motor auctioneer</li>
+    <li>Salvage dealer</li>
+    <li>Finance or insurance company</li>
+    <li>Fleet operator</li>
+    <li>Car buying servicess</li>
+  </ol>
 	
-	<fieldset class="">
+  <form action="/verify">
+
+  {{{formData}}}
+
+  <fieldset class="">
 
     <div class="form-group">
     <label class="block-label" for="radio-1">
-      <input id="radio-1" type="radio" name="radio-group" value="no">
+      <input id="radio-1" type="radio" name="motorTrader" value="no">
+      <!-- tie inputs together for routing -->
       No
     </label>
     </div>
 
     <div class="form-group">
     <label class="block-label" for="radio-2">
-      <input id="radio-2" type="radio" name="radio-group" value="yes">
+      <input id="radio-2" type="radio" name="motorTrader" value="yes">
+      <!-- tie inputs together for routing -->
       Yes
     </label>
     </div>
 
   </fieldset>
-	
-  <a href="/verify/" class="button" role="button">Continue</a>
+  <button type="submit" class="button">Continue</button>
+  </form>
 	
 </main>
 
